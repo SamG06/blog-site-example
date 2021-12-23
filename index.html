@@ -214,6 +214,9 @@
         html {
           width: 100%;
         }
+        footer {
+          display: flex;
+        }
         .activity-buttons {
           position: static;
           flex-flow: row;
@@ -237,6 +240,7 @@
 
         .activity-buttons {
           width: 20%;
+          margin-top: 21px;
         }
 
         .header {
@@ -254,7 +258,6 @@
         article:hover {
           background-color: rgb(213, 247, 255);
           cursor: pointer;
-          transform: scale(1.03) translateZ(0);
 
           backface-visibility: hidden;
           -webkit-font-smoothing: subpixel-antialiased;
@@ -333,6 +336,15 @@
 
       .blog-posts-container article {
         margin-top: 20px;
+      }
+
+      .made-with {
+        display: flex;
+        align-items: center;
+      }
+      .heart {
+        margin-left: 7px;
+        transform: scale(1.3);
       }
     </style>
   </head>
