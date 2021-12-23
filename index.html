@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /* Box sizing rules */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+
+      /* Remove default margin */
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      figure,
+      blockquote,
+      dl,
+      dd {
+        margin: 0;
+      }
+
+      /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+      ul[role="list"],
+      ol[role="list"] {
+        list-style: none;
+      }
+
+      /* Set core root defaults */
+      html:focus-within {
+        scroll-behavior: smooth;
+      }
+
+      /* Set core body defaults */
+      body {
+        min-height: 100vh;
+        text-rendering: optimizeSpeed;
+        line-height: 1.5;
+      }
+
+      /* A elements that don't have a class get default styles */
+      a:not([class]) {
+        text-decoration-skip-ink: auto;
+      }
+
+      /* Make images easier to work with */
+      img,
+      picture {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* Inherit fonts for inputs and buttons */
+      input,
+      button,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+      @media (prefers-reduced-motion: reduce) {
+        html:focus-within {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* rajdhani-regular - latin */
+      @font-face {
+        font-family: "Rajdhani";
+        font-style: normal;
+        font-weight: 400;
+        src: url("../fonts/rajdhani-v10-latin-regular.eot"); /* IE9 Compat Modes */
+        src: local(""),
+          url("../fonts/rajdhani-v10-latin-regular.eot?#iefix")
+            format("embedded-opentype"),
+          /* IE6-IE8 */ url("../fonts/rajdhani-v10-latin-regular.woff2")
+            format("woff2"),
+          /* Super Modern Browsers */
+            url("../fonts/rajdhani-v10-latin-regular.woff") format("woff"),
+          /* Modern Browsers */ url("/fonts/rajdhani-v10-latin-regular.ttf")
+            format("truetype"),
+          /* Safari, Android, iOS */
+            url("../fonts/rajdhani-v10-latin-regular.svg#Rajdhani")
+            format("svg"); /* Legacy iOS */
+      }
+
+      h1 {
+        font-family: "Rajdhani";
+        font-weight: 300;
+      }
+
+      .header p {
+        font-family: "Rajdhani";
+        font-weight: 200;
+      }
+      .header {
+        text-align: center;
+        padding-top: 15px;
+      }
+
+      svg {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .moon:hover {
+        transform: scale(1.1);
+      }
+
+      .moon:active {
+        transform: scale(1);
+      }
+
+      .dark-mode {
+        background-color: rgb(26, 26, 26);
+        color: white;
+      }
+
+      .dark-mode .moon path {
+        fill: #e3e3e3;
+      }
+
+      .activity-buttons {
+        position: absolute;
+        bottom: 17px;
+        display: flex;
+        padding-right: 10px;
+        width: 100%;
+      }
+      .heart path {
+        fill: rgb(218, 41, 41);
+      }
+      footer {
+        display: flex;
+        width: 100%;
+        bottom: 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+
+      .made-with {
+        display: flex;
+      }
+
+      .copyright {
+        margin-left: auto;
+      }
+      .moon {
+        margin-left: auto;
+      }
+      svg {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+
+      h2 {
+        color: #393939;
+      }
+
+      article p {
+        color: #383838;
+        font-size: 1em;
+      }
+
+      article h2 {
+        font-size: 1.8em;
+        margin-bottom: 5px;
+      }
+
+      .dark-mode h2 {
+        color: rgb(201, 201, 201);
+      }
+      .dark-mode article p {
+        color: rgb(143, 143, 143);
+      }
+      html {
+        display: flex;
+        flex-flow: column;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      footer {
+        display: none;
+      }
+      .blog-posts-container {
+        padding: 10px;
+      }
+      @media only screen and (min-width: 600px) {
+        html {
+          width: 100%;
+        }
+        .activity-buttons {
+          position: static;
+          flex-flow: row;
+          justify-content: center;
+          margin-top: 10px;
+        }
+        .moon {
+          margin: 0;
+        }
+        body {
+          width: 100%;
+          position: relative;
+          display: flex;
+        }
+
+        .blog-posts-container {
+          width: 100%;
+          flex-grow: 2;
+          justify-self: center;
+        }
+
+        .activity-buttons {
+          width: 20%;
+        }
+
+        .header {
+          width: 28%;
+          max-width: 260px;
+          padding-right: 20px;
+          padding-left: 20px;
+          padding-top: 0;
+        }
+
+        body {
+          padding-top: 20px;
+          max-width: 1400px;
+        }
+        article:hover {
+          background-color: rgb(213, 247, 255);
+          cursor: pointer;
+          transform: scale(1.03) translateZ(0);
+
+          backface-visibility: hidden;
+          -webkit-font-smoothing: subpixel-antialiased;
+        }
+
+        .dark-mode article:hover {
+          background-color: #3b3b79;
+        }
+      }
+
+      .search {
+        position: relative;
+      }
+
+      .search input {
+        background: #f4f4f4;
+        border: none;
+        padding: 10px;
+        font-size: 1.3;
+        width: 100%;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .dark-mode .search-icon path {
+        fill: rgb(204, 204, 204);
+      }
+      .dark-mode .search input {
+        background: #474747;
+      }
+
+      .dark-mode .search input::placeholder {
+        color: rgb(189, 189, 189);
+      }
+
+      .blog-posts {
+        margin-top: 50px;
+      }
+
+      .view {
+        text-decoration: underline;
+      }
+
+      article a {
+        color: black;
+        display: block;
+        margin-top: 10px;
+        color: rgb(22, 92, 150);
+      }
+
+      article {
+        padding: 10px;
+        transition: background-color 0.2s, transform 0.2s;
+        border-radius: 5px;
+        -webkit-perspective: 1000;
+        perspective: 1000;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        transform: translateZ(0);
+      }
+
+      .dark-mode article a {
+        color: #c1c1ed;
+      }
+
+      .blog-posts-container article:first-child {
+        margin-top: 0px;
+      }
+
+      .blog-posts-container article {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Titan</h1>
+      <p>Just talking about everything webdev.</p>
+    </div>
+
+    <div class="blog-posts-container">
+      <div class="search">
+        <input type="text" placeholder="Search all blog posts..." />
+        <svg
+          class="search-icon"
+          width="27"
+          height="27"
+          viewBox="0 0 27 27"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.25 20.25C13.2469 20.2496 15.1862 19.5811 16.7591 18.351L21.7046 23.2965L23.2954 21.7058L18.3499 16.7603C19.5806 15.1871 20.2495 13.2474 20.25 11.25C20.25 6.28763 16.2124 2.25 11.25 2.25C6.28763 2.25 2.25 6.28763 2.25 11.25C2.25 16.2124 6.28763 20.25 11.25 20.25ZM11.25 4.5C14.9726 4.5 18 7.52738 18 11.25C18 14.9726 14.9726 18 11.25 18C7.52738 18 4.5 14.9726 4.5 11.25C4.5 7.52738 7.52738 4.5 11.25 4.5Z"
+            fill="black"
+          />
+        </svg>
+      </div>
+      <div class="blog-posts">
+        <article>
+          <h2>Webdev Discord Abuse</h2>
+          <p>
+            I’ve been abused in the official discord server for r/webdev for
+            about a year now. It keeps me up at night and is often why I cry
+            myself to sleep...
+          </p>
+          <a href="#">View Article</a>
+        </article>
+        <article>
+          <h2>Why Bebo Is Awesome</h2>
+          <p>
+            Bebo for the longest time had a budget that has saved countless
+            lives and blessed reddit users with premium...
+          </p>
+          <a href="#">View Article</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="activity-buttons">
+      <svg
+        class="moon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 11.807C10.7418 10.5483 9.88488 8.94484 9.53762 7.1993C9.19037 5.45375 9.36832 3.64444 10.049 2C8.10826 2.38205 6.32559 3.33431 4.92899 4.735C1.02399 8.64 1.02399 14.972 4.92899 18.877C8.83499 22.783 15.166 22.782 19.072 18.877C20.4723 17.4805 21.4245 15.6983 21.807 13.758C20.1625 14.4385 18.3533 14.6164 16.6077 14.2692C14.8622 13.9219 13.2588 13.0651 12 11.807Z"
+          fill="black"
+        />
+      </svg>
+    </div>
+
+    <footer>
+      <div class="made-with">
+        Made With
+        <svg
+          class="heart"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M14.4219 4.43126C14.2124 3.94632 13.9104 3.50687 13.5328 3.13751C13.1549 2.76705 12.7093 2.47265 12.2203 2.27032C11.7132 2.05969 11.1694 1.95187 10.6203 1.95314C9.85 1.95314 9.09844 2.16407 8.44531 2.56251C8.28906 2.65782 8.14063 2.76251 8 2.87657C7.85938 2.76251 7.71094 2.65782 7.55469 2.56251C6.90156 2.16407 6.15 1.95314 5.37969 1.95314C4.825 1.95314 4.2875 2.05939 3.77969 2.27032C3.28906 2.47345 2.84688 2.76564 2.46719 3.13751C2.08906 3.50645 1.787 3.94601 1.57813 4.43126C1.36094 4.93595 1.25 5.47189 1.25 6.02345C1.25 6.54376 1.35625 7.08595 1.56719 7.63751C1.74375 8.09845 1.99688 8.57657 2.32031 9.05938C2.83281 9.82345 3.5375 10.6203 4.4125 11.4281C5.8625 12.7672 7.29844 13.6922 7.35938 13.7297L7.72969 13.9672C7.89375 14.0719 8.10469 14.0719 8.26875 13.9672L8.63906 13.7297C8.7 13.6906 10.1344 12.7672 11.5859 11.4281C12.4609 10.6203 13.1656 9.82345 13.6781 9.05938C14.0016 8.57657 14.2563 8.09845 14.4313 7.63751C14.6422 7.08595 14.7484 6.54376 14.7484 6.02345C14.75 5.47189 14.6391 4.93595 14.4219 4.43126Z"
+            fill="#FF8989"
+          />
+        </svg>
+      </div>
+
+      <div class="copyright">©2021</div>
+    </footer>
+    <script>
+      const audio = new Audio("click.wav");
+      audio.volume = 0.3;
+      const moon = document.querySelector(".moon");
+      moon.addEventListener("click", () => {
+        audio.setAttribute("src", "click.wav");
+
+        document.querySelector("html").classList.toggle("dark-mode");
+        audio.currentTime = 0;
+        audio.play();
+      });
+    </script>
+  </body>
+</html>
